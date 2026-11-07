@@ -1,2 +1,2 @@
 # ad-optimizer-ai
-HACKATON
+HACKATHON ADOBE

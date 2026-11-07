@@ -1,0 +1,70 @@
+:root { --vc-css: 1; }
+.hidden { display: none !important; }
+.flex { display: flex; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+.glass-header { background: rgba(11, 15, 25, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.glass-card   { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
+
+body { overflow-x: hidden; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0b0f19; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ef4444; }
+
+/* ---- Nivele de risc: fiecare nivel setează două culori folosite peste tot ---- */
+.risk-low  { --c1: #16a34a; --c2: #4ade80; }
+.risk-mid  { --c1: #ca8a04; --c2: #facc15; }
+.risk-high { --c1: #ea580c; --c2: #fb923c; }
+.risk-crit { --c1: #dc2626; --c2: #f87171; }
+
+/* ---- Bara de procent ---- */
+.bar-track { height: 8px; border-radius: 999px; background: rgba(148,163,184,0.15); overflow: hidden; }
+.bar-fill {
+  height: 100%; width: 0; border-radius: 999px;
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  box-shadow: 0 0 12px var(--c1);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pct { color: var(--c2); font-weight: 800; font-variant-numeric: tabular-nums; }
+.level-tag { color: var(--c2); background: color-mix(in srgb, var(--c1) 18%, transparent); border: 1px solid color-mix(in srgb, var(--c1) 45%, transparent); }
+
+/* ---- Inelul scorului ---- */
+.score-ring {
+  --p: 0; width: 190px; height: 190px; border-radius: 50%;
+  background: conic-gradient(var(--c2) calc(var(--p) * 1%), rgba(148,163,184,0.15) 0);
+  display: grid; place-items: center;
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--c1) 55%, transparent));
+}
+.score-inner { width: 156px; height: 156px; border-radius: 50%; background: #0f1524; display: flex; align-items: baseline; justify-content: center; padding-top: 48px; }
+.score-inner span  { font-size: 4rem; font-weight: 900; color: #fff; line-height: 1; }
+.score-inner small { font-size: 1rem; color: #6b7280; margin-left: 2px; }
+#scoreBadge { color: var(--c2); background: color-mix(in srgb, var(--c1) 18%, transparent); border-color: color-mix(in srgb, var(--c1) 45%, transparent); }
+
+/* ---- Carduri segment ---- */
+.seg-card { padding: 1.25rem; border-radius: 1rem; border: 1px solid #1f2937; border-top: 3px solid var(--c1); transition: border-color .2s; }
+.seg-card:hover { border-color: var(--c1); }
+
+/* ---- Liste ---- */
+.fix-item { display: flex; gap: .75rem; align-items: flex-start; padding: .75rem; border-radius: .5rem; background: rgba(31,41,55,.5); border: 1px solid #374151; font-size: .875rem; color: #d1d5db; }
+.fix-item b { flex-shrink: 0; font-size: .7rem; padding: 2px 8px; border-radius: 999px; color: var(--c2); background: color-mix(in srgb, var(--c1) 18%, transparent); }
+.check-item { display: flex; align-items: center; gap: .6rem; }
+.check-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c1); box-shadow: 0 0 8px var(--c1); flex-shrink: 0; }
+.slogan-item { padding: .75rem; border-radius: .5rem; border: 1px solid #374151; background: rgba(31,41,55,.5); cursor: pointer; transition: border-color .2s; color: #e5e7eb; }
+.slogan-item:hover, .slogan-item:focus-visible { border-color: #22c55e; outline: none; }
+
+/* ---- Butoane ---- */
+.sort-btn { font-size: .8rem; padding: .35rem .9rem; border-radius: 999px; border: 1px solid #374151; color: #9ca3af; background: #111827; }
+.sort-btn.active { color: #fff; border-color: #ef4444; }
+.action-btn { padding: .6rem 1.4rem; border-radius: 999px; border: 1px solid #374151; background: #111827; color: #9ca3af; transition: all .2s; }
+.action-btn:hover, .action-btn:focus-visible { color: #fff; border-color: #ef4444; outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; }
+  .bar-fill { transition: none; }
+}

@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCheck AI - Hackathon</title>
+    <!-- AICI E MAGIA: Linia asta aduce tot designul. Ai nevoie de internet activ pe laptop ca să meargă! -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
+    <!-- Bara de Sus -->
+    <nav class="bg-black text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-red-500">VibeCheck<span class="text-white">AI</span></h1>
+            <p class="text-sm">Powered by Adobe</p>
+        </div>
+    </nav>
+
+    <!-- Zona Principală -->
+    <main class="container mx-auto mt-10 p-4 flex flex-col items-center">
+        <h2 class="text-4xl font-extrabold mb-4 text-center">Analizează riscul reclamei tale</h2>
+        <p class="text-gray-500 mb-8 text-center max-w-lg">
+            Încarcă imaginea campaniei tale de marketing și lasă AI-ul să îți spună dacă va fi un succes sau un dezastru de PR.
+        </p>
+
+        <!-- ZONA 1 (Upload-ul Tău) -->
+        <div id="zona-upload" class="flex flex-col items-center w-full mt-5">
+            <div class="bg-white p-10 rounded-2xl shadow-xl w-full max-w-2xl border-2 border-dashed border-gray-300 text-center transition hover:border-red-500">
+                <p class="mb-4 text-gray-600 font-medium">Trage reclama aici sau apasă pentru upload</p>
+                <input type="file" id="imageInput" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer" />
+            </div>
+
+            <button id="analyzeBtn" class="mt-8 bg-black hover:bg-gray-800 text-white font-bold py-4 px-10 rounded-full shadow-2xl transition-transform transform hover:scale-105 text-lg">
+                🔥 Analizează Riscul Reclamei
+            </button>
+        </div>
+
+        <!-- ZONA DE LOADING (Animația Ta) -->
+        <div id="zona-loading" class="hidden flex-col items-center w-full mt-20">
+            <!-- Rotița care se învârte -->
+            <svg class="animate-spin h-16 w-16 text-red-600 mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <h3 class="text-2xl font-bold text-gray-800 animate-pulse">AI-ul analizează reclama...</h3>
+            <p class="text-gray-500 mt-2">Scanăm reacțiile pentru 5 categorii sociale diferite</p>
+        </div>
+
+        <!-- ZONA 2 (Dashboard-ul colegului tău) -->
+        <div id="zona-rezultate" class="hidden w-full max-w-5xl mt-10 pb-20 mx-auto">
+            
+            <div class="bg-red-50 border-l-8 border-red-600 p-8 rounded-xl shadow-lg mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-red-900">Risc de PR: Critic</h2>
+                    <p class="text-red-700 mt-2 text-lg">Reclama promovează stereotipuri periculoase și e considerată insensibilă.</p>
+                </div>
+                <div class="text-6xl font-black text-red-600">
+                    85<span class="text-2xl text-red-400">/100</span>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Reacții pe Demografii:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-800">📱 Gen Z (18-25)</h4>
+                        <span class="bg-red-100 text-red-800 text-xs font-bold px-2 py-1 rounded">Boicot</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">Vor percepe mesajul ca fiind 'cringe' și lipsit de autenticitate pe TikTok.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-800">👨‍👩‍👧‍👦 Părinți (30-45)</h4>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded">Îngrijorați</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">Consideră tonul nepotrivit și nerespectuos pentru copii.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow border border-gray-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-800">💼 Corporatiști</h4>
+                        <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Neutru</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">Majoritatea o vor ignora, trecând rapid peste ea pe LinkedIn.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Legătura cu logica butoanelor -->
+    <script src="script.js"></script>
+</body>
+</html>
